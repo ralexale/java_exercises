@@ -1,32 +1,35 @@
 package model;
 
-import database.CRUD;
+import entity.Author;
+import repository.AuthorRepository;
 
 import java.util.List;
 
-public class AuthorModel implements CRUD {
-    @Override
-    public Object insert(Object object) {
-        return null;
-    }
+public class AuthorModel implements AuthorRepository {
+
 
     @Override
-    public boolean update(Object object) {
+    public boolean insertAuthor(Author author) {
         return false;
     }
 
     @Override
-    public boolean delete(Object object) {
+    public boolean updateAuthor(Author author) {
         return false;
     }
 
     @Override
-    public List<Object> findAll() {
+    public boolean deleteAuthor(int authorId) {
+        return false;
+    }
+
+    @Override
+    public List<Author> findAllAuthors() {
         return null;
     }
 
     @Override
-    public Object findById(int id) {
+    public Author findAuthorById(int authorId) {
         return null;
     }
 }
