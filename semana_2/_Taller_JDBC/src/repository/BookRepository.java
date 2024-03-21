@@ -5,7 +5,7 @@ import entity.Book;
 import java.util.List;
 
 public interface BookRepository {
-    public void test(int test);
+
     public Book insertBook(Book book);
 
     public boolean updateBook(Book book);
