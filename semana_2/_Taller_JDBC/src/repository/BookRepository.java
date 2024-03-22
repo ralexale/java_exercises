@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface BookRepository {
 
-    public Book insertBook(Book book);
+    public boolean insertBook(Book book);
 
-    public boolean updateBook(Book book);
+    public boolean updateBook(int bookId);
 
-    public boolean deleteBook(Book bookId);
+    public boolean deleteBook(int bookId);
 
     public List<Book> findAllBooks();
 

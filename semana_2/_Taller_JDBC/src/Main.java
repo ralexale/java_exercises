@@ -25,10 +25,12 @@ public class Main {
                 case "1":
                     objAuthorController.showMenu();
                     break;
-
+                case "2":
+                    objBookController.showMenu();
+                    break;
 
             }
-        } while (option != "3");
+        } while (!option.equals("3"));
 
 
     }

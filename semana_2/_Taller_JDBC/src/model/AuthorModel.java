@@ -32,7 +32,7 @@ public class AuthorModel implements AuthorRepository {
 
             objPrepare.close();
 
-            JOptionPane.showMessageDialog(null, " Coder insertion was successful.");
+            JOptionPane.showMessageDialog(null, " Author insertion was successful.");
 
             return true;
         } catch (Exception e) {
@@ -155,6 +155,7 @@ public class AuthorModel implements AuthorRepository {
             JOptionPane.showMessageDialog(null, "Cannot get the author" + e.getMessage());
         }
 
+        ConfigDB.closeConnection();
         return author;
     }
 

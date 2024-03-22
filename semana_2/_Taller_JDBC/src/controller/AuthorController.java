@@ -39,6 +39,11 @@ public class AuthorController {
         return menuList;
     }
 
+    public int selectAuthorById() {
+        return Integer.parseInt(JOptionPane.showInputDialog(this.getAllAuthors() + "\n" + "Insert the author id"));
+
+    }
+
     public void deleteAuthorById(int authorId) {
 
         this.objAuthorModel.deleteAuthor(authorId);
@@ -91,21 +96,18 @@ public class AuthorController {
                     JOptionPane.showMessageDialog(null, this.getAllAuthors());
                     break;
                 case "3":
-                    int authorDeleteId = Integer.parseInt(JOptionPane.showInputDialog(this.getAllAuthors() + "\n" + "Insert the author id"));
-                    this.deleteAuthorById(authorDeleteId);
+                    this.deleteAuthorById(selectAuthorById());
                     break;
                 case "4":
-                    int authorUpdateId = Integer.parseInt(JOptionPane.showInputDialog(this.getAllAuthors() + "\n" + "Insert the author id"));
-                    this.updateAuthor(authorUpdateId);
+                    this.updateAuthor(selectAuthorById());
                     break;
                 case "5":
-                    int authorId = Integer.parseInt(JOptionPane.showInputDialog(this.getAllAuthors() + "\n" + "Insert the author id"));
-                    JOptionPane.showMessageDialog(null, this.objAuthorModel.findAuthorById(authorId).toString());
+                    JOptionPane.showMessageDialog(null, this.objAuthorModel.findAuthorById(selectAuthorById()).toString());
                     break;
                 case "6":
-                    int authorIdBook = Integer.parseInt(JOptionPane.showInputDialog(this.getAllAuthors() + "\n" + "Insert the author id"));
-                    JOptionPane.showMessageDialog(null, this.showAuthorBooks(authorIdBook));
+
+                    JOptionPane.showMessageDialog(null, this.showAuthorBooks(selectAuthorById()));
             }
-        } while (option != "7");
+        } while (!option.equals("7"));
     }
 }
