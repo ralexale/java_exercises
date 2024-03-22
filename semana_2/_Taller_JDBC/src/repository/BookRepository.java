@@ -8,7 +8,7 @@ public interface BookRepository {
 
     public boolean insertBook(Book book);
 
-    public boolean updateBook(int bookId);
+    public boolean updateBook(Book book);
 
     public boolean deleteBook(int bookId);
 

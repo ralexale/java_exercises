@@ -53,15 +53,19 @@ public class BookController {
     }
 
     public void updateBook(int bookId) {
-        Author objBokk = this.objAuthorModel.findAuthorById(authorId);
+        Book objBook = this.objBookModel.findBookById(bookId);
 
-        String name = JOptionPane.showInputDialog("Insert author name: ");
-        String nationality = JOptionPane.showInputDialog("Insert author nationality: ");
+        String title = JOptionPane.showInputDialog("Insert the book title");
+        int yearOfPublication = Integer.parseInt(JOptionPane.showInputDialog("Insert the year of publication"));
+        double price = Double.parseDouble(JOptionPane.showInputDialog(null, "Insert the price of the book"));
+        int authorId = Integer.parseInt(JOptionPane.showInputDialog(null, "Insert the author id of the book"));
 
-        objAuthor.setName(name);
-        objAuthor.setNationality(nationality);
+        objBook.setTitle(title);
+        objBook.setYearOfPublication(yearOfPublication);
+        objBook.setPrice(price);
+        objBook.setAuthorId(authorId);
 
-        this.objAuthorModel.updateAuthor(objAuthor);
+        this.objBookModel.updateBook(objBook);
     }
 
 
@@ -89,10 +93,8 @@ public class BookController {
                     this.deleteBookById(this.selectBookById());
                     break;
                 case "4":
-
+                    this.updateBook(this.selectBookById());
                     break;
-
-
             }
         } while (!option.equals("5"));
     }
