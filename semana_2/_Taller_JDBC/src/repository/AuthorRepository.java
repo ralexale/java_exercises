@@ -1,6 +1,7 @@
 package repository;
 
 import entity.Author;
+import entity.Book;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface AuthorRepository {
     public List<Author> findAllAuthors();
 
     public Author findAuthorById(int authorId);
+
+    public List<Book> findBooksByAuthor(int authorId);
 }

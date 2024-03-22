@@ -2,12 +2,24 @@ package entity;
 
 public class Book {
     private int id;
+
+
     private String title;
     private int yearOfPublication;
     private int authorId;
+    private double price;
 
     public Book() {
 
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getId() {
@@ -45,10 +57,10 @@ public class Book {
     @Override
     public String toString() {
         return "Book " +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", yearOfPublication=" + yearOfPublication +
-                ", authorId=" + authorId;
-
+                "id: " + id +
+                ", title: " + title + '\'' +
+                ", yearOfPublication: " + yearOfPublication +
+                ", authorId: " + authorId +
+                ", price: " + price;
     }
 }
