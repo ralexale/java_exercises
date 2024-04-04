@@ -102,7 +102,7 @@ public class AuthorController {
                     this.updateAuthor(selectAuthorById());
                     break;
                 case "5":
-                    JOptionPane.showMessageDialog(null, this.objAuthorModel.findAuthorById(selectAuthorById()).toString());
+                    JOptionPane.showMessageDialog(null, this.objAuthorModel.findAuthorById(selectAuthorById()));
                     break;
                 case "6":
 

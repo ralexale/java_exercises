@@ -41,7 +41,32 @@ public class BookModel implements BookRepository {
     }
 
     @Override
-    public boolean updateBook(int bookId) {
+    public boolean updateBook(Book book) {
+        Connection objConnection = ConfigDB.openConnection();
+        boolean isUpdated = false;
+        try {
+            String sql = "UPDATE book SET title =  ?, year_publication = ? ,price = ?, author_id = ? WHERE book.id = ?; ";
+
+            PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(sql);
+
+            objPrepare.setString(1, book.getTitle());
+            objPrepare.setInt(2, book.getYearOfPublication());
+            objPrepare.setDouble(3, book.getPrice());
+            objPrepare.setInt(4, book.getAuthorId());
+            objPrepare.setInt(5, book.getId());
+
+            int totalAffectedRows = objPrepare.executeUpdate();
+            if (totalAffectedRows > 0) {
+                isUpdated = true;
+                JOptionPane.showMessageDialog(null, "The update was successful.");
+            }
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error updating book" + e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
         return false;
     }
 
@@ -106,22 +131,31 @@ public class BookModel implements BookRepository {
     @Override
     public Book findBookById(int bookId) {
         Connection objConnection = ConfigDB.openConnection();
-
-        try{
+        Book book = null;
+        try {
             String sql = "SELECT * FROM book WHERE id = ?;";
 
             PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(sql);
 
+            objPrepare.setInt(1, bookId);
             ResultSet objResult = objPrepare.executeQuery();
 
+            while (objResult.next()) {
 
+                book = new Book();
 
-        }catch (SQLException e){
+                book.setAuthorId(objResult.getInt("author_id"));
+                book.setTitle(objResult.getString("title"));
+                book.setPrice(objResult.getDouble("price"));
+                book.setYearOfPublication(objResult.getInt("year_publication"));
+                book.setId(objResult.getInt("id"));
+            }
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Cannot get the book" + e.getMessage());
         }
 
         ConfigDB.closeConnection();
-        return null;
+        return book;
     }
 
     @Override
