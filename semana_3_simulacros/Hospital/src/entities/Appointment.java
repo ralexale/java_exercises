@@ -1,5 +1,6 @@
 package entities;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Appointment {
@@ -7,7 +8,7 @@ public class Appointment {
     private int doctorId;
     private int patientId;
     private Date date;
-    private Date time;
+    private LocalTime time_appointment;
     private String reason;
     private Doctor doctor;
     private Patient patient;
@@ -15,29 +16,16 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int id, int doctorId, int patientId, Date date, Date time, String reason) {
-        this.id = id;
-        this.doctorId = doctorId;
-        this.patientId = patientId;
-        this.date = date;
-        this.time = time;
-        this.reason = reason;
-    }
-
-    public Appointment(int id, int doctorId, int patientId, Date date, Date time, String reason, Doctor doctor,
-            Patient patient) {
-        this.id = id;
-        this.doctorId = doctorId;
-        this.patientId = patientId;
-        this.date = date;
-        this.time = time;
-        this.reason = reason;
-        this.doctor = doctor;
-        this.patient = patient;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setTime_appointment(LocalTime time_appointment) {
+        this.time_appointment = time_appointment;
+    }
+
+    public LocalTime getTime_appointment() {
+        return time_appointment;
     }
 
     public void setId(int id) {
@@ -68,13 +56,6 @@ public class Appointment {
         this.date = date;
     }
 
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
 
     public String getReason() {
         return reason;
@@ -107,7 +88,7 @@ public class Appointment {
                 ", doctorId=" + doctorId +
                 ", patientId=" + patientId +
                 ", date=" + date +
-                ", time=" + time +
+                ", time=" + time_appointment +
                 ", reason='" + reason + '\'' +
                 ", doctor=" + doctor +
                 ", patient=" + patient +

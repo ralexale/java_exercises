@@ -22,8 +22,13 @@ public class AppointmentModel implements AppointmentCRUDRepository {
                     PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setInt(1, appointment.getPatientId());
             statement.setInt(2, appointment.getDoctorId());
-            statement.setDate(3, (Date) appointment.getDate());
-            statement.setDate(4, (Date) appointment.getTime());
+
+            java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
+            statement.setDate(3, sqlDate);
+
+            java.sql.Time sqlTime = new java.sql.Time(appointment.getTime_appointment().getHour());
+            statement.setTime(4,  sqlTime);
+            ;
             statement.setString(5, appointment.getReason());
 
             statement.execute();
@@ -51,8 +56,13 @@ public class AppointmentModel implements AppointmentCRUDRepository {
 
             statement.setInt(1, appointment.getPatientId());
             statement.setInt(2, appointment.getDoctorId());
-            statement.setDate(3, (Date) appointment.getDate());
-            statement.setDate(4, (Date) appointment.getTime());
+
+            java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
+            statement.setDate(3, sqlDate);
+
+            java.sql.Time sqlTime = new java.sql.Time(appointment.getTime_appointment().getTime());
+            statement.setTime(4,  sqlTime);
+
             statement.setString(5, appointment.getReason());
             statement.setInt(6, appointment.getId());
 

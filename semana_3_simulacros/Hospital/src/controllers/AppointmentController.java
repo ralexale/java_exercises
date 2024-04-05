@@ -1,49 +1,79 @@
 package controllers;
 
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import entities.Appointment;
 import models.AppointmentModel;
 
-public class AppointmentController extends DateGenerator {
+public class AppointmentController extends FormatTimeGenerator {
 
     AppointmentModel objAppointmentModel;
     DoctorController objDoctorController;
     PatientController objPatientController;
 
     public AppointmentController() {
+        objDoctorController = new DoctorController();
+        objPatientController = new PatientController();
         objAppointmentModel = new AppointmentModel();
     }
 
     public void saveAppointment() {
         Appointment objAppointment = new Appointment();
 
-        int doctorId =  objDoctorController.selectDoctorId();
-        int  patientId = objPatientController.selectPatientId();
+        int doctorId = objDoctorController.selectDoctorId();
+        int patientId = objPatientController.selectPatientId();
 
-        Date  date = showDatePickerDialog();
+        Date date = showDatePickerDialog();
+        LocalTime time = showTimePickerDialog();
 
+        String reason = JOptionPane.showInputDialog("insert the reason for the appointment");
 
-    };
+        objAppointment.setDate(date);
+        objAppointment.setTime_appointment(time);
+        objAppointment.setReason(reason);
+
+        this.objAppointmentModel.saveAppointment(objAppointment);
+    }
+
+    ;
 
     public void updateAppointment() {
 
-    };
+    }
+
+    ;
 
     public void deleteAppointment() {
 
-    };
+
+    }
+
+    ;
 
     public void findAppointmentById() {
 
-    };
+    }
+
+    ;
 
     public String findAll() {
 
-        return "";
-    };
+        List<Appointment> appointments = objAppointmentModel.findAll();
+
+        String menuList = "";
+
+        for (Appointment appointmentTem : appointments) {
+            menuList += appointmentTem.toString() + "\n";
+        }
+
+        return menuList;
+    }
+
+    ;
 
     public int selectAppointmentId() {
         return Integer.parseInt(JOptionPane.showInputDialog(this.findAll() + "\n" + "Insert the appointment id"));
