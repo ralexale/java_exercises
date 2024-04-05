@@ -1,13 +1,14 @@
 package controllers;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import entities.Appointment;
 import models.AppointmentModel;
 
-public class AppointmentController {
+public class AppointmentController extends DateGenerator {
+
     AppointmentModel objAppointmentModel;
     DoctorController objDoctorController;
     PatientController objPatientController;
@@ -17,8 +18,13 @@ public class AppointmentController {
     }
 
     public void saveAppointment() {
-
         Appointment objAppointment = new Appointment();
+
+        int doctorId =  objDoctorController.selectDoctorId();
+        int  patientId = objPatientController.selectPatientId();
+
+        Date  date = showDatePickerDialog();
+
 
     };
 
