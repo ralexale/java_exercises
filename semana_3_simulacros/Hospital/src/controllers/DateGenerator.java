@@ -20,7 +20,7 @@ public abstract class DateGenerator {
         int result = JOptionPane.showConfirmDialog(null, panel, "Select a patient birthdate",
                 JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            // Obtener la fecha seleccionada
+            // Obtener la fecha seleccionadaa
             Date selectedDate = (Date) spinner.getValue();
             return selectedDate;
         }
