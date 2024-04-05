@@ -20,7 +20,10 @@ public class PatientModel implements PatientCRUDRepository {
                     PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, patient.getName());
             statement.setString(2, patient.getLastName());
-            statement.setDate(3, (Date) patient.getDateBirth());
+            // creamos un nuevo objeto de tipo javaSqlDate para poder insertarlo en la base de datos
+            java.sql.Date sqlDate = new java.sql.Date(patient.getDateBirth().getTime());
+            statement.setDate(3, sqlDate);
+
             statement.setString(4, patient.getIdentityCard());
 
             statement.execute();
@@ -47,7 +50,10 @@ public class PatientModel implements PatientCRUDRepository {
             PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
             statement.setString(1, patient.getName());
             statement.setString(2, patient.getLastName());
-            statement.setDate(3, (Date) patient.getDateBirth());
+
+            java.sql.Date sqlDate = new java.sql.Date(patient.getDateBirth().getTime());
+            statement.setDate(3, sqlDate);
+
             statement.setString(4, patient.getIdentityCard());
             statement.setInt(5, patient.getId());
 
@@ -64,7 +70,7 @@ public class PatientModel implements PatientCRUDRepository {
     public void deletePatient(int id) {
         objConnection = ConfigurationDB.openConnection();
         try {
-            String sql = "DELETE FROM paciente WHERE id = ?;";
+            String sql = "DELETE FROM paciente WHERE id_paciente = ?;";
             PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
             statement.setInt(1, id);
 
@@ -85,7 +91,7 @@ public class PatientModel implements PatientCRUDRepository {
                     ResultSet resultSet = statement.executeQuery()) {
 
                 resultSet.next();
-                int patientId = resultSet.getInt("id_medico");
+                int patientId = resultSet.getInt("id_paciente");
                 String name = resultSet.getString("nombre");
                 String lastName = resultSet.getString("apellidos");
                 Date dateBirth = resultSet.getDate("fecha_nacimiento");
@@ -109,7 +115,7 @@ public class PatientModel implements PatientCRUDRepository {
             try (PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
                     ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("id_medico");
+                    int id = resultSet.getInt("id_paciente");
                     String name = resultSet.getString("nombre");
                     String lastName = resultSet.getString("apellidos");
                     Date dateBirth = resultSet.getDate("fecha_nacimiento");

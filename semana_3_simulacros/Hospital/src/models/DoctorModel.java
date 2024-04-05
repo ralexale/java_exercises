@@ -70,7 +70,7 @@ public class DoctorModel implements DoctorCRUDRepository {
         objConnection = ConfigurationDB.openConnection();
 
         try {
-            String sql = "DELETE FROM medico WHERE id = ?;";
+            String sql = "DELETE FROM medico WHERE id_medico = ?;";
             PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
             statement.setInt(1, id);
 

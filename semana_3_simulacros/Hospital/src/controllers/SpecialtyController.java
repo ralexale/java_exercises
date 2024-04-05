@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -8,10 +7,10 @@ import javax.swing.JOptionPane;
 import entities.Specialty;
 import models.SpecialtyModel;
 
-public class SpecialityController {
+public class SpecialtyController {
     SpecialtyModel objSpecialtyModel;
 
-    public SpecialityController() {
+    public SpecialtyController() {
         objSpecialtyModel = new SpecialtyModel();
 
     }
@@ -27,13 +26,13 @@ public class SpecialityController {
 
         objSpecialtyModel.saveSpecialty(objSpecialty);
 
-    };
+    }
 
     void deleteSpecialty(int id) {
 
         objSpecialtyModel.deleteSpecialty(id);
 
-    };
+    }
 
     void updateSpecialty(int id) {
         Specialty objSpecialty = new Specialty();
@@ -47,29 +46,30 @@ public class SpecialityController {
 
         objSpecialtyModel.updateSpecialty(objSpecialty);
 
-    };
+    }
+
+    public int selectSpecialtyId() {
+        return Integer.parseInt(JOptionPane.showInputDialog(this.findAll() + "\n" + "Insert the specialty id"));
+
+    }
+
 
     public Specialty findSpecialtyById(int id) {
 
         return objSpecialtyModel.findSpecialtyById(id);
-    };
+    }
 
-    public Specialty findSpecialtyByName(String name) {
-
-        return objSpecialtyModel.findSpecialtyByName(name);
-
-    };
 
     public String findAll() {
         List<Specialty> specialties = objSpecialtyModel.findAll();
         String menuList = "";
 
-        specialties.stream().map( specialty -> 
-            menuList += specialty.toString() + "\n"
-        ) ;
+        for (Specialty specialtyTemp : specialties) {
+            menuList += specialtyTemp.toString() + "\n";
+        }
 
         return menuList;
-    };
+    }
 
     public void showMenu() {
         String option = "";
@@ -81,8 +81,7 @@ public class SpecialityController {
                     3. Delete an Specialty
                     4. Update an Specialty
                     5. show Specialty by id
-                    6. show Specialty by name
-                    7. Exit
+                    6. Exit
                     choose and option:
                     """);
 
@@ -94,19 +93,16 @@ public class SpecialityController {
                     JOptionPane.showMessageDialog(null, this.findAll());
                     break;
                 case "3":
-                    this.deleteAuthorById(selectAuthorById());
+                    this.deleteSpecialty(selectSpecialtyId());
                     break;
                 case "4":
-                    this.updateAuthor(selectAuthorById());
+                    this.updateSpecialty(selectSpecialtyId());
                     break;
                 case "5":
                     JOptionPane.showMessageDialog(null,
-                            this.objAuthorModel.findAuthorById(selectAuthorById()).toString());
+                            this.objSpecialtyModel.findSpecialtyById(selectSpecialtyId()).toString());
                     break;
-                case "6":
-
-                    JOptionPane.showMessageDialog(null, this.showAuthorBooks(selectAuthorById()));
             }
-        } while (!option.equals("7"));
+        } while (!option.equals("6"));
     }
-}}
+}

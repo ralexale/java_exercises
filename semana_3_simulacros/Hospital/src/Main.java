@@ -3,11 +3,11 @@ import javax.swing.JOptionPane;
 import controllers.AppointmentController;
 import controllers.DoctorController;
 import controllers.PatientController;
-import controllers.SpecialityController;
+import controllers.SpecialtyController;
 
 public class Main {
     public static void main(String[] args) {
-        SpecialityController objSpecialityController = new SpecialityController();
+        SpecialtyController objSpecialtyController = new SpecialtyController();
         DoctorController objDoctorController = new DoctorController();
         PatientController objPatientController = new PatientController();
         AppointmentController objAppointmentController = new AppointmentController();
@@ -16,7 +16,7 @@ public class Main {
 
         do {
             option = JOptionPane.showInputDialog("""
-                    --- Library ---
+                    --- Hospital ---
                     1. Specialties
                     2. Doctors
                     3. Patients
@@ -28,7 +28,7 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    objSpecialityController.showMenu();
+                    objSpecialtyController.showMenu();
                     break;
                 case "2":
                     objDoctorController.showMenu();

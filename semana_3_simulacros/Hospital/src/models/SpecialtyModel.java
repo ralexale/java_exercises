@@ -34,7 +34,7 @@ public class SpecialtyModel implements SpecialtyCRUDRepository {
             while (rs.next()) {
                 specialty.setId(rs.getInt(1));
             }
-            JOptionPane.showMessageDialog(null, "specialty insertion completed successfully", sql, 0);
+            JOptionPane.showMessageDialog(null, "specialty insertion completed successfully");
 
         } catch (SQLException e) {
             ConfigurationDB.closeConnection();
@@ -64,7 +64,7 @@ public class SpecialtyModel implements SpecialtyCRUDRepository {
     public void updateSpecialty(Specialty specialty) {
         objConnection = ConfigurationDB.openConnection();
         try {
-            String sql = "UPDATE medico SET nombre = ?, descripcion = ? WHERE id_especialidad = ?;";
+            String sql = "UPDATE especialidad SET nombre = ?, descripcion = ? WHERE id_especialidad = ?;";
             PreparedStatement statement = (PreparedStatement) objConnection.prepareStatement(sql);
             statement.setString(1, specialty.getName());
             statement.setString(2, specialty.getDescription());
