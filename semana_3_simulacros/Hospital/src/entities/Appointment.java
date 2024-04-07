@@ -16,6 +16,15 @@ public class Appointment {
     public Appointment() {
     }
 
+    public Appointment(int id, int doctorId, int patientId, Date date, LocalTime time_appointment, String reason) {
+        this.id = id;
+        this.doctorId = doctorId;
+        this.patientId = patientId;
+        this.date = date;
+        this.time_appointment = time_appointment;
+        this.reason = reason;
+    }
+
     public int getId() {
         return id;
     }

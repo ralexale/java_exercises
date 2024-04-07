@@ -4,6 +4,9 @@ import controllers.AppointmentController;
 import controllers.DoctorController;
 import controllers.PatientController;
 import controllers.SpecialtyController;
+import database.ConfigurationDB;
+
+import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +14,8 @@ public class Main {
         DoctorController objDoctorController = new DoctorController();
         PatientController objPatientController = new PatientController();
         AppointmentController objAppointmentController = new AppointmentController();
-
+        Connection objConnection = ConfigurationDB.openConnection();
+        System.out.println(objConnection);
         String option = "";
 
         do {

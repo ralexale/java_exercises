@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class AppointmentModel implements AppointmentCRUDRepository {
             java.sql.Date sqlDate = new java.sql.Date(appointment.getDate().getTime());
             statement.setDate(3, sqlDate);
 
-            java.sql.Time sqlTime = new java.sql.Time(appointment.getTime_appointment().getTime());
+            java.sql.Time sqlTime = new java.sql.Time(appointment.getTime_appointment().getHour());
             statement.setTime(4,  sqlTime);
 
             statement.setString(5, appointment.getReason());
@@ -107,7 +108,7 @@ public class AppointmentModel implements AppointmentCRUDRepository {
                 int idDate = resultSet.getInt("id_cita");
                 int idPatient = resultSet.getInt("id_paciente");
                 Date date = resultSet.getDate("fecha_cita");
-                Date time = resultSet.getDate("hora");
+                LocalTime time = resultSet.getTime("hora").toLocalTime();
                 String reason = resultSet.getString("motivo");
 
                 appointment = new Appointment(idDate, idDoctor, idPatient, date, time, reason);
@@ -133,7 +134,7 @@ public class AppointmentModel implements AppointmentCRUDRepository {
                     int idDate = resultSet.getInt("id_cita");
                     int idPatient = resultSet.getInt("id_paciente");
                     Date date = resultSet.getDate("fecha_cita");
-                    Date time = resultSet.getDate("hora");
+                    LocalTime time = resultSet.getTime("hora").toLocalTime();
                     String reason = resultSet.getString("motivo");
 
                     Appointment appointment = new Appointment(idDate, idDoctor, idPatient, date, time, reason);

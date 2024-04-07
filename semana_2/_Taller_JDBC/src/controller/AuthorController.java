@@ -8,12 +8,11 @@ import javax.swing.*;
 import java.util.List;
 
 public class AuthorController {
-    AuthorModel objAuthorModel;
+    AuthorModel objAuthorModel = new AuthorModel();
 
-
-    public AuthorController() {
-        objAuthorModel = new AuthorModel();
-    }
+    // public AuthorController() {
+    // objAuthorModel = new AuthorModel();
+    // }
 
     public void insertAuthor() {
         Author objAuthor = new Author();
@@ -65,7 +64,6 @@ public class AuthorController {
         List<Book> books = this.objAuthorModel.findBooksByAuthor(authorId);
         String booksString = "";
 
-
         for (Book objBookTemp : books) {
             booksString += objBookTemp.toString();
         }
@@ -84,8 +82,8 @@ public class AuthorController {
                     4. Update an author
                     5. show author by id
                     6. show author books
-                    7. Exit      
-                    choose and option:   
+                    7. Exit
+                    choose and option:
                     """);
 
             switch (option) {

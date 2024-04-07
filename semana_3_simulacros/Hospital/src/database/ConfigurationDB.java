@@ -22,9 +22,9 @@ public class ConfigurationDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3306/hospital_db";
-            String user = "root";
-            String password = "Rlwl2023.";
+            String url = "jdbc:mysql://bszlbfsyggiyahmnfgnv-mysql.services.clever-cloud.com/bszlbfsyggiyahmnfgnv";
+            String user = "uaksaf0vmwlmezbl";
+            String password = "Ilx6DtbgQEEFINlztfkR";
 
             connection = (Connection) DriverManager.getConnection(url, user, password);
 
